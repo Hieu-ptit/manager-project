@@ -19,4 +19,21 @@ import java.util.stream.Collectors;
 @Service
 public class DiaryServiceImpl implements DiaryService {
 
+    @Autowired
+    private DiaryMapper diaryMapper;
+
+    @Autowired
+    private DiaryRepository diaryRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public ResponseEntity<ResponseDetail<List<DiaryDto>>> read() {
+        List<DiaryEntity> diaryEntityList = diaryRepository.getDiaryEntity();
+        List<UserEntity> userEntityList = userRepository.getUserEntity();
+        List<DiaryEntity> list = diaryEntityList.stream().filter(d -> userEntityList
+                .stream().map(UserEntity::getId).anyMatch(u -> u.equals(d.getIdUser()))).collect(Collectors.toList());
+        return Response.ok(diaryMapper.mapToListDiaryDto(list));
+    }
 }
