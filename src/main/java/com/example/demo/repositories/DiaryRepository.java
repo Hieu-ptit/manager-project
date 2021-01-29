@@ -10,4 +10,8 @@ public interface DiaryRepository extends JpaRepository<DiaryEntity, Integer> {
 
     @Query("SELECT d FROM DiaryEntity d WHERE d.status = true")
     List<DiaryEntity> getDiaryEntity();
+
+    @Query("SELECT c FROM DiaryEntity c WHERE c.id = ?1")
+    DiaryEntity findById(int id);
+
 }
