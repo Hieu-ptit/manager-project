@@ -36,13 +36,8 @@ public class UserMapper {
     }
 
     public UserEntity mapToUserEntity(UserRequest userRequest,int id){
-        UserEntity userEntity = new UserEntity();
+        UserEntity userEntity = mapToUserEntity(userRequest);
         userEntity.setId(id);
-        userEntity.setFirstName(userRequest.getFirstName());
-        userEntity.setLastName(userRequest.getLastName());
-        userEntity.setEmail(userRequest.getEmail());
-        userEntity.setCreatedAt(userRequest.getCreatedAt());
-        userEntity.setStatus(userRequest.isStatus());
         return userEntity;
     }
 }

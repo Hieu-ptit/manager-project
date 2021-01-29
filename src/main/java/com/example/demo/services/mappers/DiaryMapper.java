@@ -40,16 +40,9 @@ public class DiaryMapper {
         return diaryEntity;
     }
 
-    public DiaryEntity mapToDiaryEntityByid(DiaryRequest diaryRequest,int id){
-        DiaryEntity diaryEntity = new DiaryEntity();
+    public DiaryEntity mapToDiaryEntity(DiaryRequest diaryRequest,int id){
+        DiaryEntity diaryEntity = mapToDiaryEntity(diaryRequest);
         diaryEntity.setId(id);
-        diaryEntity.setTitle(diaryRequest.getTitle());
-        diaryEntity.setContent(diaryRequest.getContent());
-        diaryEntity.setModifiedAt(diaryRequest.getModifiedAt());
-        diaryEntity.setStatus(diaryRequest.isStatus());
-        diaryEntity.setStatusFavorite(diaryRequest.isStatusFavorite());
-        diaryEntity.setCreateAt(diaryRequest.getCreateAt());
-        diaryEntity.setIdUser(diaryRequest.getIdUser());
         return diaryEntity;
     }
 }
