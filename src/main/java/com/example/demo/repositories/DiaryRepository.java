@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface DiaryRepository extends JpaRepository<DiaryEntity, Integer> {
 
+    @Query("SELECT d FROM DiaryEntity d WHERE d.status = true")
+    List<DiaryEntity> getDiaryEntity();
 }

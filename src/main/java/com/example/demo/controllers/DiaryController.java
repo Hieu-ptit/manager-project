@@ -12,4 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/diaries")
 public class DiaryController {
+
+    @Autowired
+    private DiaryService diaryService;
+    @GetMapping
+    public ResponseEntity<ResponseDetail<List<DiaryDto>>> read() {
+        return diaryService.read();
+    }
 }
