@@ -11,4 +11,7 @@ public interface DiaryService {
     ResponseEntity<ResponseDetail<List<DiaryDto>>> read();
 
     ResponseEntity<ResponseDetail<DiaryDto>> createDiary(DiaryIn diaryIn);
+
+    ResponseEntity<ResponseDetail<DiaryDto>> updateDiaryById(int id, DiaryIn diaryIn);
+
 }

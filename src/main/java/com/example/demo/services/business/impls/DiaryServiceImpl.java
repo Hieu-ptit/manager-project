@@ -52,4 +52,16 @@ public class DiaryServiceImpl implements DiaryService {
         DiaryDto diaryDto = diaryMapper.mapToDiaryDto(diaryEntity);
         return Response.ok(diaryDto);
     }
+
+    @Override
+    public ResponseEntity<ResponseDetail<DiaryDto>> updateDiaryById(int id, DiaryIn diaryIn) {
+        ResponseEntity<ResponseDetail<DiaryDto>> validate = diaryValidator.validateDiary(diaryIn);
+        if (!validate.getStatusCode().is2xxSuccessful())
+            return validate;
+        DiaryEntity diaryEntity = diaryMapper.mapDiaryEntity(id, diaryIn);
+        diaryRepository.updateById(diaryEntity.getTitle(), diaryEntity.getContent(), diaryEntity.getModifiedAt(), id);
+        DiaryDto diaryDto = diaryMapper.mapToDiaryDto(diaryEntity);
+        return Response.ok(diaryDto);
+    }
+
 }
